@@ -1,8 +1,63 @@
 <footer>
-    <ul>
-    	<li>youremail@youremail.com</li>
-    	<li>2145 Sheridan Rd., Evanston, IL, 60201</li>
-    	<li>(123) 456-7890</li>
-    </ul>
+	<ul>
+	  <li>andrewkwolek2025@u.northwestern.edu</li>
+	  <li>2145 Sheridan Rd., Evanston, IL, 60201</li>
+	  <li>(847) 274-5043</li>
+	</ul>
+  
+	<!-- Social media links with local images -->
+	<div class="social-links">
+	  <a href="https://github.com/andrewkwolek" target="_blank" class="social-icon">
+		<img src="{{ site.baseurl }}/public/images/github-logo-white.png" alt="GitHub" class="social-icon-img">
+	  </a>
+	  <a href="https://www.linkedin.com/in/andrew-kwolek/" target="_blank" class="social-icon">
+		<img src="{{ site.baseurl }}/public/images/linkedin-logo.png" alt="LinkedIn" class="social-icon-img">
+	  </a>
+	</div>
 </footer>
 
+<style>
+	/* Footer styles */
+	footer {
+	  padding: 20px;
+	  background-color: #f4f4f4; /* You can change the background color as needed */
+	  text-align: center; /* Center text in the footer */
+	}
+  
+	footer ul {
+	  list-style: none;
+	  padding: 0;
+	  margin: 0;
+	}
+  
+	footer ul li {
+	  margin: 5px 0;
+	}
+  
+	/* Social media links styling */
+	.social-links {
+	  margin-top: 20px;
+	  display: flex;
+	  justify-content: center; /* Center the social icons */
+	  gap: 15px; /* Space between icons */
+	}
+  
+	/* Styling for social media icons */
+	.social-icon-img {
+	  width: 30px; /* Small size for the logos */
+	  height: 30px;
+	  object-fit: contain; /* Ensure the image fits within the container */
+	  transition: transform 0.3s ease; /* Smooth transition on hover */
+	}
+  
+	.social-icon-img:hover {
+	  transform: scale(1.1); /* Slightly enlarge the icon on hover */
+	}
+  
+	/* Ensure the footer is at the bottom */
+	footer {
+	  position: relative;
+	  bottom: 0;
+	  width: 100%;
+	}
+</style>

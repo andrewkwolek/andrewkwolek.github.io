@@ -1,0 +1,73 @@
+---
+layout: main
+---
+<head>
+    <style>
+        body {
+            background-color: rgb(199, 217, 221); /* Light gray background for the whole page */
+        }
+
+        #resume-content {
+            position: relative;
+            text-align: center; /* Centers the content inside the section */
+        }
+
+        #resume-image {
+            width: 100%;
+            max-width: 900px;       /* Limit the width to 900px */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Shadow around the image */
+            border-radius: 8px;    /* Optional: Adds rounded corners to the image */
+            margin: 0 auto;        /* Center the image */
+            display: block;        /* Ensures the image is block-level, allowing it to be centered */
+        }
+
+        /* Download link and text container */
+        .download-container {
+            display: flex;             /* Align icon and text horizontally */
+            align-items: center;       /* Vertically align the icon and text */
+            justify-content: center;   /* Center the icon and text horizontally */
+            margin-top: 20px;          /* Space between the image and the download section */
+        }
+
+        /* Styling for the download icon */
+        .download-container img {
+            width: 30px;               /* Set the size of the icon */
+            height: auto;              /* Maintain the aspect ratio */
+            cursor: pointer;          /* Change cursor to pointer on hover */
+            margin-right: 8px;         /* Space between icon and text */
+        }
+
+        .download-container img:hover {
+            opacity: 0.8;              /* Add hover effect to the icon */
+        }
+
+        /* Styling for the "Download" text */
+        .download-container span {
+            font-size: 14px;           /* Set font size of the text */
+            color: #000000;            /* Set the color of the text */
+            cursor: pointer;          /* Change cursor to pointer when hovering over the text */
+        }
+
+        .download-container span:hover {
+            opacity: 0.8;              /* Add hover effect to the text */
+        }
+    </style>
+</head>
+
+<main id="resume">
+    <h1 class="page-header">Resume</h1>
+    <section id="resume-content">
+  
+        <!-- Resume as an image -->
+        <img id="resume-image" src="{{ site.baseurl }}/public/images/resume.png" alt="Resume Image">
+  
+        <!-- Download link and text below the resume image -->
+        <div class="download-container">
+            <a href="{{ site.baseurl }}/public/files/AndrewKwolekResume2025.pdf" download="AndrewKwolekResume.pdf">
+                <img src="{{ site.baseurl }}/public/images/download.png" alt="Download Resume">
+            </a>
+            <span>Download</span>  <!-- Text next to the icon -->
+        </div>
+  
+    </section>
+</main>
