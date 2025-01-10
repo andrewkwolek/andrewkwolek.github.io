@@ -1,14 +1,204 @@
 ---
 layout: main
 ---
+
 <main class="project">
-	<section id="contact-content">
-		<img id="project-image" src="{{ page.image }}">
+	<section id="project-content">
+		<!-- Project Video -->
+		<div class="video-container">
+			<video id="project-video" class="responsive-video" autoplay loop muted>
+				<source src="{{ page.video }}" type="video/mp4">
+				Your browser does not support the video tag.
+			</video>
+		</div>
+		
+		<!-- Project Title and Date -->
 		<h1 id="project-title">{{ page.title }}</h1>
-		<h2 id="project-date">{{ page.date |  date: '%B %-d, %Y'}}</h2>
+		<h2 id="project-date">{{ page.date | date: '%B %-d, %Y' }}</h2>
 
-		{{ content }}
+		<!-- Content and Skills Section (Flexbox layout) -->
+		<div id="project-details">
+			<!-- Project Description -->
+			<div id="content">
+				{{ content }}
+			</div>
 
+			<!-- Skills Panel -->
+			{% if page.skills %}
+			<section id="skills-panel">
+				<h3>Skills Used</h3>
+				<ul>
+					{% for skill in page.skills %}
+					<li>{{ skill }}</li>
+					{% endfor %}
+				</ul>
+			</section>
+			{% endif %}
+		</div>
+		
+		<!-- GitHub Link Section (Visible only if repo link exists) -->
+		{% if page.repo %}
+		<section id="github-link">
+			<a href="{{ page.repo }}" target="_blank" id="github-repo-link">
+				<img src="/public/images/github-logo.png" alt="GitHub Logo" class="github-logo">
+				View the GitHub Repo
+			</a>
+		</section>
+		{% endif %}
 	</section>
-
 </main>
+
+
+<style>
+	/* Set light blue background for the page */
+	body {
+		background-color: #e6f7ff;  /* Light blue background */
+		font-family: Arial, sans-serif;
+		margin: 0;
+		padding: 0;
+	}
+
+	/* Center only the video */
+	.video-container {
+		text-align: center;  /* Center the video container */
+		margin-bottom: 30px;  /* Add more space below the video */
+	}
+
+	.responsive-video {
+		width: 100%;
+		max-width: 600px;  /* Limit maximum width to 600px for a smaller video */
+		height: auto;  /* Maintain aspect ratio */
+		border-radius: 8px;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+
+	#project-content {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 20px;
+	}
+
+	#project-title {
+		font-size: 2.8em;
+		color: #2c3e50;  /* Dark color for the title */
+		margin-top: 20px;
+		margin-bottom: 10px;
+		text-align: center;  /* Center the title */
+	}
+
+	#project-date {
+		font-size: 1.2em;
+		color: #7f8c8d;  /* Light grey color for the date */
+		text-align: center;  /* Center the date */
+		margin-bottom: 30px;  /* Add gap below the date */
+	}
+
+	/* Flexbox Layout for Description and Skills Panel */
+	#project-details {
+		display: flex; /* Creates a flex container */
+		flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+		justify-content: space-between; /* Spreads items across the container */
+		gap: 30px; /* Adds space between the description and skills panel */
+	}
+
+	#content {
+		flex: 1 1 60%; /* Content section takes up 60% of the space */
+	}
+
+	#skills-panel {
+		flex: 1 1 10%; /* Reduced width for the skills panel */
+		background-color: #ffffff;  /* White background for the skills panel */
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		padding: 15px;  /* Increase padding inside the skills panel */
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	}
+
+	#skills-panel ul {
+		list-style-type: disc;  /* Adds bullet points to the list */
+		padding-left: 20px;  /* Adds left padding to align the bullets properly */
+		margin-top: 10px;  /* Adds some space above the list */
+	}
+
+	#skills-panel li {
+		margin-bottom: 5px;  /* Adds space between list items */
+		font-size: 1.5em;  /* Increase font size for skills */
+	}
+
+	/* Ensure bullet points are styled properly in the content section (e.g., How to Play) */
+	#content ul {
+		list-style-type: disc;  /* Adds bullet points to the list */
+		padding-left: 20px;  /* Aligns bullets properly */
+		margin-top: 10px;  /* Adds some space above the list */
+	}
+
+	#content li {
+		margin-bottom: 5px;  /* Adds space between list items */
+	}
+
+	/* Section Title Styling */
+	h3 {
+		font-size: 1.8em;  /* Smaller font size for the section title */
+		color: #e74c3c;  /* Red color for section titles */
+		border-bottom: 2px solid #e74c3c;
+		padding-bottom: 5px;
+		margin-bottom: 15px;
+	}
+
+	/* GitHub Link Styling */
+	#github-link {
+		text-align: center;
+		margin-top: 20px;  /* Add margin to separate from other sections */
+	}
+
+	#github-repo-link {
+		font-size: 1.2em;  /* Smaller font size for the link */
+		color: #333;
+		text-decoration: none;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.github-logo {
+		width: 20px; /* Size of the GitHub logo */
+		height: 20px;
+		margin-right: 10px;
+	}
+
+	#github-repo-link:hover {
+		color: #2c3e50;
+	}
+
+	/* Add spacing between sections like Overview and How to Play */
+	#content > h2 {
+		margin-top: 20px;
+		color: #3498db;  /* Bright blue color for secondary headings */
+	}
+
+	#content > p {
+		margin-bottom: 20px;
+		color: #34495e;  /* Darker grey for paragraph text */
+		line-height: 1.6;  /* Improve readability with better line height */
+	}
+
+	/* Ensure skills panel and content stack on smaller screens */
+	@media (max-width: 768px) {
+		#project-details {
+			flex-direction: column; /* Stack items vertically on smaller screens */
+		}
+
+		#content {
+			flex: 1 1 100%; /* Content section takes full width */
+		}
+
+		#skills-panel {
+			flex: 1 1 100%; /* Skills panel takes full width */
+			margin-top: 20px; /* Add space between content and skills panel */
+		}
+
+		#github-link {
+			width: 100%; /* Full width for GitHub section on smaller screens */
+		}
+	}
+</style>
