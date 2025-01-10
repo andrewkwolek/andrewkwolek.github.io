@@ -35,9 +35,9 @@ layout: main
 			</section>
 			{% endif %}
 		</div>
-		
-		<!-- GitHub Link Section (Visible only if repo link exists) -->
-		{% if page.repo %}
+
+		<!-- Project Repository Link -->
+        {% if page.repo %}
 		<section id="github-link">
 			<a href="{{ page.repo }}" target="_blank" id="github-repo-link">
 				<img src="/public/images/github-logo.png" alt="GitHub Logo" class="github-logo">
@@ -47,7 +47,6 @@ layout: main
 		{% endif %}
 	</section>
 </main>
-
 
 <style>
 	/* Set light blue background for the page */
@@ -106,34 +105,14 @@ layout: main
 	}
 
 	#skills-panel {
-		flex: 1 1 10%; /* Reduced width for the skills panel */
+		flex: 1 1 20%; /* Skills panel now takes up 20% of the space (smaller) */
 		background-color: #ffffff;  /* White background for the skills panel */
 		border: 1px solid #ddd;
 		border-radius: 8px;
-		padding: 15px;  /* Increase padding inside the skills panel */
+		padding: 10px;  /* Reduced padding to make the box smaller */
 		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-	}
-
-	#skills-panel ul {
-		list-style-type: disc;  /* Adds bullet points to the list */
-		padding-left: 20px;  /* Adds left padding to align the bullets properly */
-		margin-top: 10px;  /* Adds some space above the list */
-	}
-
-	#skills-panel li {
-		margin-bottom: 5px;  /* Adds space between list items */
-		font-size: 1.5em;  /* Increase font size for skills */
-	}
-
-	/* Ensure bullet points are styled properly in the content section (e.g., How to Play) */
-	#content ul {
-		list-style-type: disc;  /* Adds bullet points to the list */
-		padding-left: 20px;  /* Aligns bullets properly */
-		margin-top: 10px;  /* Adds some space above the list */
-	}
-
-	#content li {
-		margin-bottom: 5px;  /* Adds space between list items */
+		height: fit-content;
+		width: fit-content;
 	}
 
 	/* Section Title Styling */
@@ -145,6 +124,32 @@ layout: main
 		margin-bottom: 15px;
 	}
 
+	#skills-panel ul {
+		list-style-type: disc;  /* Default bullet points */
+		padding-left: 20px;  /* Indentation for bullets */
+		margin-left: 0;  /* Remove any default margin */
+		display: block; /* Makes the skills appear vertically */
+	}
+
+	#skills-panel ul li {
+		font-size: 1em;  /* Adjust font size for skill items */
+		color: #2c3e50;  /* Dark color for skill items */
+		margin-bottom: 6px;  /* Space between skills */
+	}
+
+	/* Add spacing between sections like Overview and How to Play */
+	#content > h2 {
+		margin-top: 20px;
+		color: #3498db;  /* Bright blue color for secondary headings */
+	}
+
+	#content > p {
+		margin-bottom: 20px;
+		color: #34495e;  /* Darker grey for paragraph text */
+		line-height: 1.6;  /* Improve readability with better line height */
+	}
+
+	/* Styling for the repository link section */
 	/* GitHub Link Styling */
 	#github-link {
 		text-align: center;
@@ -161,7 +166,7 @@ layout: main
 	}
 
 	.github-logo {
-		width: 20px; /* Size of the GitHub logo */
+		width: 20px;
 		height: 20px;
 		margin-right: 10px;
 	}
@@ -170,35 +175,17 @@ layout: main
 		color: #2c3e50;
 	}
 
-	/* Add spacing between sections like Overview and How to Play */
-	#content > h2 {
-		margin-top: 20px;
-		color: #3498db;  /* Bright blue color for secondary headings */
-	}
-
-	#content > p {
-		margin-bottom: 20px;
-		color: #34495e;  /* Darker grey for paragraph text */
-		line-height: 1.6;  /* Improve readability with better line height */
-	}
-
 	/* Ensure skills panel and content stack on smaller screens */
 	@media (max-width: 768px) {
-		#project-details {
-			flex-direction: column; /* Stack items vertically on smaller screens */
+		#skills-panel {
+			float: none; /* Skills panel should not float on smaller screens */
+			width: 100%;  /* Full width on small screens */
+			margin-left: 0;  /* Remove left margin */
+			margin-top: 20px;  /* Space between content and skills panel */
 		}
 
 		#content {
-			flex: 1 1 100%; /* Content section takes full width */
-		}
-
-		#skills-panel {
-			flex: 1 1 100%; /* Skills panel takes full width */
-			margin-top: 20px; /* Add space between content and skills panel */
-		}
-
-		#github-link {
-			width: 100%; /* Full width for GitHub section on smaller screens */
+			clear: none; /* No need to clear floats on small screens */
 		}
 	}
 </style>
