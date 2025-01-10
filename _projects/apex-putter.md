@@ -10,6 +10,12 @@ skills:
   - Computer Vision
 repo: https://github.com/andrewkwolek/Apex-Putter
 featured: true
+authors:
+  - Zhengyang Kris Weng
+  - Andrew Kwolek
+  - Kyle Puckett
+  - Jueun Kwon
+  - Sayantani Bhattacharya
 ---
 
 ## Overview
@@ -23,10 +29,3 @@ Mini golf, a flat surface, presents an intriguing challenge for robotic systems.
 A Franka Robot? A lot more complex. It may not feel competition, but sure does feel the pressure from a badly planned cartesian path. In this setup, a Franka Panda robot arm attempts the fundamental task of mini golf - putting a ball with just enough force to reach the hole. 
 
 Our group uses vision integration via April Tag Detection, motion planning arm and joint positions, as well as cartesian paths, and just enough bit physics to prove that robots can play the simplest children's game (or "perfect" first date), but it's much more difficult than one would think. A whole lot of math and 3D printed parts later, we give you...Apex Putter
-
-## Authors
-- Zhengyang Kris Weng
-- Andrew Kwolek
-- Kyle Puckett
-- Jueun Kwon
-- Sayantani Bhattacharya 

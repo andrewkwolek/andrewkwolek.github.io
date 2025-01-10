@@ -5,35 +5,54 @@ layout: main
 <main class="project">
 	<section id="project-content">
 		<!-- Project Video -->
-		<div class="video-container">
-			<video id="project-video" class="responsive-video" autoplay loop muted>
-				<source src="{{ page.video }}" type="video/mp4">
-				Your browser does not support the video tag.
-			</video>
+		<div class="media-container">
+			{% if page.video %}
+				<video id="project-video" class="responsive-video" autoplay loop muted>
+					<source src="{{ page.video }}" type="video/mp4">
+					Your browser does not support the video tag.
+				</video>
+			{% else %}
+				<img src="{{ page.image }}" alt="Project Image" class="responsive-image">
+			{% endif %}
 		</div>
 		
 		<!-- Project Title and Date -->
 		<h1 id="project-title">{{ page.title }}</h1>
 		<h2 id="project-date">{{ page.date | date: '%B %-d, %Y' }}</h2>
 
-		<!-- Content and Skills Section (Flexbox layout) -->
+		<!-- Content Section -->
 		<div id="project-details">
 			<!-- Project Description -->
 			<div id="content">
 				{{ content }}
 			</div>
 
-			<!-- Skills Panel -->
-			{% if page.skills %}
-			<section id="skills-panel">
-				<h3>Skills Used</h3>
-				<ul>
-					{% for skill in page.skills %}
-					<li>{{ skill }}</li>
-					{% endfor %}
-				</ul>
-			</section>
-			{% endif %}
+			<!-- Sidebar Section for Authors and Skills -->
+			<div id="sidebar">
+				<!-- Authors Box -->
+				{% if page.authors %}
+				<section id="authors-box">
+					<h3>Authors</h3>
+					<ul>
+						{% for author in page.authors %}
+						<li>{{ author }}</li>
+						{% endfor %}
+					</ul>
+				</section>
+				{% endif %}
+
+				<!-- Skills Box -->
+				{% if page.skills %}
+				<section id="skills-box">
+					<h3>Skills Used</h3>
+					<ul>
+						{% for skill in page.skills %}
+						<li>{{ skill }}</li>
+						{% endfor %}
+					</ul>
+				</section>
+				{% endif %}
+			</div>
 		</div>
 
 		<!-- Project Repository Link -->
@@ -43,6 +62,14 @@ layout: main
 				<img src="/public/images/github-logo.png" alt="GitHub Logo" class="github-logo">
 				View the GitHub Repo
 			</a>
+		</section>
+		{% endif %}
+
+		<!-- PDF Section (display if 'pdf' is provided in the markdown) -->
+		{% if page.file %}
+		<section id="pdf-section">
+			<h3>Project Documentation</h3>
+			<embed src="{{ page.file }}" type="application/pdf" width="100%" height="600px">
 		</section>
 		{% endif %}
 	</section>
@@ -58,14 +85,14 @@ layout: main
 	}
 
 	/* Center only the video */
-	.video-container {
+	.media-container {
 		text-align: center;  /* Center the video container */
 		margin-bottom: 30px;  /* Add more space below the video */
 	}
 
-	.responsive-video {
+	.responsive-video, .responsive-image {
 		width: 100%;
-		max-width: 600px;  /* Limit maximum width to 600px for a smaller video */
+		max-width: 600px;  /* Limit maximum width to 600px */
 		height: auto;  /* Maintain aspect ratio */
 		border-radius: 8px;
 		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -92,52 +119,68 @@ layout: main
 		margin-bottom: 30px;  /* Add gap below the date */
 	}
 
-	/* Flexbox Layout for Description and Skills Panel */
+	/* Layout for Content and Sidebar */
 	#project-details {
-		display: flex; /* Creates a flex container */
-		flex-wrap: wrap; /* Allows items to wrap on smaller screens */
-		justify-content: space-between; /* Spreads items across the container */
-		gap: 30px; /* Adds space between the description and skills panel */
+		display: flex;
+		justify-content: space-between; /* Space between content and sidebar */
 	}
 
 	#content {
-		flex: 1 1 60%; /* Content section takes up 60% of the space */
+		flex: 1;  /* Content section takes up remaining space */
+		position: relative;
 	}
 
-	#skills-panel {
-		flex: 1 1 20%; /* Skills panel now takes up 20% of the space (smaller) */
-		background-color: #ffffff;  /* White background for the skills panel */
+	/* Sidebar styling */
+	#sidebar {
+		width: 300px; /* Fixed width for the sidebar */
+		display: flex;
+		flex-direction: column; /* Stack authors and skills boxes vertically */
+		gap: 20px; /* Space between boxes */
+	}
+
+	/* Authors Box Styling */
+	#authors-box, #skills-box {
+		background-color: #ffffff;
 		border: 1px solid #ddd;
 		border-radius: 8px;
-		padding: 10px;  /* Reduced padding to make the box smaller */
+		padding: 20px;
 		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-		height: fit-content;
-		width: fit-content;
 	}
 
-	/* Section Title Styling */
-	h3 {
-		font-size: 1.8em;  /* Smaller font size for the section title */
+	#authors-box h3, #skills-box h3 {
+		font-size: 1.8em;
 		color: #e74c3c;  /* Red color for section titles */
 		border-bottom: 2px solid #e74c3c;
 		padding-bottom: 5px;
 		margin-bottom: 15px;
 	}
 
-	#skills-panel ul {
-		list-style-type: disc;  /* Default bullet points */
-		padding-left: 20px;  /* Indentation for bullets */
-		margin-left: 0;  /* Remove any default margin */
-		display: block; /* Makes the skills appear vertically */
+	#authors-box ul, #skills-box ul {
+		list-style-type: disc;
+		padding-left: 20px; /* Indent the list */
 	}
 
-	#skills-panel ul li {
-		font-size: 1em;  /* Adjust font size for skill items */
-		color: #2c3e50;  /* Dark color for skill items */
-		margin-bottom: 6px;  /* Space between skills */
+	#authors-box ul li, #skills-box ul li {
+		color: #2c3e50;
+		font-size: 1.1em;
+		margin-bottom: 5px;
 	}
 
-	/* Add spacing between sections like Overview and How to Play */
+	/* Content styling */
+	#content {
+		padding-left: 20px;  /* Add padding to indent the content */
+	}
+
+	#content ul {
+		padding-left: 40px; /* Indent bullet points properly */
+		margin-left: 0; /* Remove any default margin */
+	}
+
+	#content li {
+		margin-bottom: 10px; /* Space between list items */
+		line-height: 1.6; /* Improve readability of list items */
+	}
+
 	#content > h2 {
 		margin-top: 20px;
 		color: #3498db;  /* Bright blue color for secondary headings */
@@ -149,15 +192,32 @@ layout: main
 		line-height: 1.6;  /* Improve readability with better line height */
 	}
 
-	/* Styling for the repository link section */
+	/* PDF Section Styling */
+	#pdf-section {
+		margin-top: 40px;
+	}
+
+	#pdf-section h3 {
+		font-size: 1.8em;
+		color: #e74c3c;  /* Red color for section titles */
+		border-bottom: 2px solid #e74c3c;
+		padding-bottom: 5px;
+		margin-bottom: 15px;
+	}
+
+	#pdf-section embed {
+		border: 1px solid #ddd;
+		border-radius: 8px;
+	}
+
 	/* GitHub Link Styling */
 	#github-link {
 		text-align: center;
-		margin-top: 20px;  /* Add margin to separate from other sections */
+		margin-top: 20px;
 	}
 
 	#github-repo-link {
-		font-size: 1.2em;  /* Smaller font size for the link */
+		font-size: 1.2em;
 		color: #333;
 		text-decoration: none;
 		display: inline-flex;
@@ -175,17 +235,19 @@ layout: main
 		color: #2c3e50;
 	}
 
-	/* Ensure skills panel and content stack on smaller screens */
+	/* Ensure layout adapts on smaller screens */
 	@media (max-width: 768px) {
-		#skills-panel {
-			float: none; /* Skills panel should not float on smaller screens */
-			width: 100%;  /* Full width on small screens */
-			margin-left: 0;  /* Remove left margin */
-			margin-top: 20px;  /* Space between content and skills panel */
+		#project-details {
+			flex-direction: column;  /* Stack the content and sidebar vertically */
+		}
+
+		#sidebar {
+			width: 100%;  /* Sidebar should take full width on small screens */
+			margin-top: 20px;
 		}
 
 		#content {
-			clear: none; /* No need to clear floats on small screens */
+			width: 100%; /* Content section should take full width on small screens */
 		}
 	}
 </style>
