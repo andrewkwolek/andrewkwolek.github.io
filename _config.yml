@@ -12,6 +12,11 @@ video_path:         /public/videos
 # Build settings
 markdown:           kramdown
 permalink:          pretty
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  math_engine: mathjax
+
 
 # Collection definitions and settings
 collections:

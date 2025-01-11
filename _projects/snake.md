@@ -7,7 +7,7 @@ skills:
   - Python
   - Pygame
 repo: https://github.com/andrewkwolek/snake
-featured: true
+featured: false
 ---
 
 ## Overview

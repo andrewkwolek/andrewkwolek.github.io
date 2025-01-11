@@ -65,6 +65,17 @@ layout: main
 		</section>
 		{% endif %}
 
+		<!-- Link Section (display if 'link' is provided in the markdown) -->
+        {% if page.link %}
+        <section id="external-link">
+            <h3>Check out the Project</h3>
+            <a href="{{ page.link }}" target="_blank" class="project-link">
+				<img src="/public/images/game.png" alt="Game controller" class="game-controller">
+                Visit the project page
+            </a>
+        </section>
+        {% endif %}
+
 		<!-- PDF Section (display if 'pdf' is provided in the markdown) -->
 		{% if page.file %}
 		<section id="pdf-section">
@@ -171,12 +182,12 @@ layout: main
 		padding-left: 20px;  /* Add padding to indent the content */
 	}
 
-	#content ul {
+	#content ul, ol {
 		padding-left: 40px; /* Indent bullet points properly */
 		margin-left: 0; /* Remove any default margin */
 	}
 
-	#content li {
+	#content li, ol {
 		margin-bottom: 10px; /* Space between list items */
 		line-height: 1.6; /* Improve readability of list items */
 	}
@@ -232,6 +243,36 @@ layout: main
 	}
 
 	#github-repo-link:hover {
+		color: #2c3e50;
+	}
+
+	#external-link {
+		margin-top: 40px;
+		text-align: center;
+	}
+
+	#external-link h3 {
+		font-size: 1.8em;
+		color: #e74c3c;  /* Red color for section titles */
+		border-bottom: 2px solid #e74c3c;
+		padding-bottom: 5px;
+		margin-bottom: 15px;
+	}
+
+	/* External link icon size */
+	.game-controller {
+		width: 25px;  /* Set the width to a smaller size */
+		height: 25px; /* Set the height to a smaller size */
+		margin-right: 10px;  /* Optional: space between icon and text */
+	}
+
+	.project-link {
+		font-size: 1.2em;
+		color: #3498db;
+		text-decoration: none;
+	}
+
+	.project-link:hover {
 		color: #2c3e50;
 	}
 
