@@ -19,7 +19,7 @@ authors:
 ---
 
 ## Overview
-Apex Putter was the final project as a paert of Mecheng 495: Embedded Systems in Robotics, a core course of the Master of Science in Robotics program at Northwestern. The project required the use of the Emika Franka Panda robot arm and computer vision while utilizing the capabilities of ROS2.
+Apex Putter was the final project as a part of Mecheng 495: Embedded Systems in Robotics, a core course of the Master of Science in Robotics program at Northwestern. The project required the use of the Emika Franka Panda robot arm and computer vision while utilizing the capabilities of ROS2.
 
 ## Project Description
 As kids, we thought robots were the coolest things ever. We viewed them as the future that can and would do any task you gave it. We thought robots wouldn't have limits. Also in our naive ways, many kids believed mini golf was the dominant display of sportsmanship, control, and the overall "cool factor." A blast from the past, for our final project for ME 495, we've decided to integrate these naive views into one project: Robotic Mini Golf.
