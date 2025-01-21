@@ -7,10 +7,8 @@ layout: main
 		<!-- Project Video -->
 		<div class="media-container">
 			{% if page.video %}
-				<video id="project-video" class="responsive-video" autoplay loop muted playsinline>
+				<video id="project-video" class="responsive-video" autoplay loop muted>
 					<source src="{{ page.video }}" type="video/mp4">
-					<source src="{{ project.video | replace: '.mp4', '.webm' }}" type="video/webm">
-    				<source src="{{ project.video | replace: '.mp4', '.ogv' }}" type="video/ogg">
 					Your browser does not support the video tag.
 				</video>
 			{% else %}
@@ -99,18 +97,15 @@ layout: main
 
 	/* Center only the video */
 	.media-container {
-		width: 100%;
-        max-width: 100%;
-        text-align: center;  /* Center the video */
-        margin-bottom: 30px;
+		text-align: center;  /* Center the video container */
+		margin-bottom: 30px;  /* Add more space below the video */
 	}
 
 	.responsive-video, .responsive-image {
 		width: 100%;
-		max-width: 100%;
+		max-width: 600px;  /* Limit maximum width to 600px */
 		height: auto;  /* Maintain aspect ratio */
 		border-radius: 8px;
-		object-fit: cover;
 		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	}
 
