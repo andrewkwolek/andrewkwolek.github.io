@@ -136,6 +136,11 @@ title: Portfolio
 			#other-projects .project-item {
 				width: calc(50% - 20px);
 			}
+			.video-container video {
+				width: 100%;
+				height: auto;
+				max-width: 100%;
+			}
 		}
 
 		@media (max-width: 480px) {
@@ -166,8 +171,10 @@ title: Portfolio
 							<div class="image-container">
 								{% if project.video %}
 									<div class="video-container">
-										<video autoplay loop muted>
+										<video autoplay loop muted playsinline>
 											<source src="{{ project.video }}" type="video/mp4">
+											<source src="{{ project.video | replace: '.mp4', '.webm' }}" type="video/webm">
+    										<source src="{{ project.video | replace: '.mp4', '.ogv' }}" type="video/ogg">
 											Your browser does not support the video tag.
 										</video>
 									</div>
