@@ -9,6 +9,8 @@ layout: main
 			{% if page.video %}
 				<video id="project-video" class="responsive-video" autoplay loop muted>
 					<source src="{{ page.video }}" type="video/mp4">
+					<source src="{{ page.video | replace: '.mp4', '.webm' }}" type="video/webm">
+   					<source src="{{ page.video | replace: '.mp4', '.ogv' }}" type="video/ogg">
 					Your browser does not support the video tag.
 				</video>
 			{% else %}
