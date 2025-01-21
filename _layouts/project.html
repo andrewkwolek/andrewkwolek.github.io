@@ -7,7 +7,7 @@ layout: main
 		<!-- Project Video -->
 		<div class="media-container">
 			{% if page.video %}
-				<video id="project-video" class="responsive-video" autoplay loop muted>
+				<video id="project-video" class="responsive-video" autoplay loop muted playsinline>
 					<source src="{{ page.video }}" type="video/mp4">
 					<source src="{{ project.video | replace: '.mp4', '.webm' }}" type="video/webm">
     				<source src="{{ project.video | replace: '.mp4', '.ogv' }}" type="video/ogg">
