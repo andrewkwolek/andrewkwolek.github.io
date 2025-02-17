@@ -23,3 +23,4 @@ collections:
   projects:
     output: true
     permalink: /projects/:path/
+verbose: true
