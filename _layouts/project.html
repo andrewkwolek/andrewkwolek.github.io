@@ -261,9 +261,16 @@ layout: main
     <!-- Media Container -->
     <div class="media-container">
       {% if page.video %}
-        <video class="responsive-video" autoplay loop muted playsinline>
-		  <source src="{{ page.video }}" type="video/webm">
-          <source src="{{ page.video }}" type="video/mp4">
+        <video 
+          autoplay 
+          loop 
+          muted 
+          playsinline 
+          preload="metadata"
+          poster="{{ project.image }}"
+          webkit-playsinline>
+          <source src="{{ project.video }}" type="video/mp4">
+          <source src="{{ project.video }}" type="video/webm">
           Your browser does not support the video tag.
         </video>
       {% else %}
