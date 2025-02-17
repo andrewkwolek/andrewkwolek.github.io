@@ -1,14 +1,173 @@
 ---
 layout: main
 ---
+
+<style>
+  :root {
+    --primary-color: #1a237e;
+    --secondary-color: #3f51b5;
+    --accent-color: #7c4dff;
+    --background-color: #f5f8ff;
+    --card-background: #ffffff;
+    --text-color: #2c3e50;
+    --gradient-start: #3949ab;
+    --gradient-end: #1e88e5;
+    --transition-speed: 0.3s;
+  }
+
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
+
+  .page-header {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    transform: translateY(-50%) rotate(45deg);
+    pointer-events: none;
+  }
+
+  #about-content {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: var(--card-background);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    position: relative;
+  }
+
+  #portrait {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto 2rem;
+    display: block;
+    border: 4px solid var(--card-background);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform var(--transition-speed);
+  }
+
+  #portrait:hover {
+    transform: scale(1.05);
+  }
+
+  /* Content Styling */
+  #about-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+  }
+
+  #about-content h2 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+
+  #about-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    border-radius: 2px;
+  }
+
+  #about-content a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color var(--transition-speed);
+  }
+
+  #about-content a:hover {
+    border-color: var(--secondary-color);
+  }
+
+  /* List Styling */
+  #about-content ul, 
+  #about-content ol {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+  }
+
+  #about-content li {
+    margin-bottom: 0.75rem;
+  }
+
+  /* Loading Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  #about-content {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 3rem 1rem;
+      font-size: 2rem;
+    }
+
+    #about-content {
+      margin: 2rem 1rem;
+      padding: 1.5rem;
+    }
+
+    #portrait {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  /* Enhanced focus states for accessibility */
+  a:focus {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+
+  /* Ensure smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
 <main id="about">
-	<h1 class="page-header">About</h1>
-	<section id="about-content">
-
-		<img id="portrait" src="{{ page.image }}">
-
-		{{ content }}
-
-	</section>
-
+  <h1 class="page-header">About</h1>
+  <section id="about-content">
+    <img id="portrait" src="{{ page.image }}" alt="Profile Picture">
+    {{ content }}
+  </section>
 </main>
