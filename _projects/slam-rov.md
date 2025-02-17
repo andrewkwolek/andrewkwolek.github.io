@@ -25,3 +25,7 @@ Underwater SLAM with the BlueROV2 by Blue Robotics is my ongoing winter project 
 
 The first step was assembling the ROV which included the frame, six thrusters, electronics enclosure, tether, camera, sonar, and maany other components. Assembly took about 8 hours and required extreme care and precision to avoid damaging any of the internal electronics coponents and prevent any leaks in the water tight enclosures.
 
+<video width="640" height="360" loop autoplay muted>
+  <source src="/public/videos/rov_assembly_2of3.webm" type="video/webm">
+  Your browser does not support the video tag.
+</video>
