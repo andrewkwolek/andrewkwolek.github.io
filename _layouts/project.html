@@ -1,6 +1,5 @@
 ---
 layout: main
-title: Portfolio
 ---
 
 <style>
@@ -14,6 +13,7 @@ title: Portfolio
     --gradient-start: #3949ab;
     --gradient-end: #1e88e5;
     --transition-speed: 0.3s;
+    --content-width: 1200px;
   }
 
   body {
@@ -25,252 +25,316 @@ title: Portfolio
     line-height: 1.6;
   }
 
-  .page-header {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    color: white;
-    margin: 0;
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .page-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
-    transform: translateY(-50%) rotate(45deg);
-    pointer-events: none;
-  }
-
-  section {
-    padding: 4rem 2rem;
-    max-width: 1400px;
+  .project {
+    max-width: var(--content-width);
     margin: 0 auto;
+    padding: 2rem;
   }
 
-  section h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: var(--primary-color);
+  /* Ensure proper spacing below video/image */
+  .media-container {
     position: relative;
-    padding-bottom: 1rem;
-  }
-
-  section h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background-color: var(--secondary-color);
-    border-radius: 2px;
-  }
-
-  .project-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 1rem;
-  }
-
-  .project-item {
-    background: var(--card-background);
+    width: 100%;
+    margin-bottom: 3rem;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    clear: both; /* Ensure nothing floats around the media container */
   }
 
-  .project-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-  }
-
-  .image-container, .video-container {
-    position: relative;
-    padding-top: 66.67%; /* 3:2 aspect ratio */
-    overflow: hidden;
-  }
-
-  /* Video handling */
-  .video-container video {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .responsive-video, 
+  .responsive-image {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    display: block;
+    border-radius: 12px;
   }
 
-  /* Hide video controls by default but show on hover */
-  .video-container video::-webkit-media-controls {
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .video-container:hover video::-webkit-media-controls {
-    opacity: 1;
-  }
-
-  /* Safari-specific styles */
-  @supports (-webkit-touch-callout: none) {
-    .video-container video {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  .project-item:hover .image-container img,
-  .project-item:hover .video-container video {
-    transform: scale(1.05);
-  }
-
-  .inner-text {
-    padding: 1.5rem;
-    background: var(--card-background);
-  }
-
-  .inner-text h3 {
-    margin: 0;
-    font-size: 1.25rem;
+  /* Project Header */
+  #project-title {
+    font-size: 2.5rem;
     color: var(--primary-color);
+    margin: 2rem 0 0.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  #project-date {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 3rem;
+    font-weight: 500;
+  }
+
+  /* Project Details Layout */
+  #project-details {
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  /* Sidebar */
+  #sidebar {
+    float: right;
+    width: 300px;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Content area */
+  #content {
+    /* Remove any fixed width constraints */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  /* Ensure content flows around sidebar */
+  #content p, 
+  #content ul, 
+  #content ol,
+  #content h2,
+  #content h3 {
+    overflow: auto; /* Ensures content wraps around floated elements */
+  }
+
+  /* Content Area */
+  #content {
+    color: var(--text-color);
+  }
+
+  #content h2 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem;
     font-weight: 600;
   }
 
-  #featured-projects .project-item {
-    grid-column: span 2;
+  #content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
   }
 
-  @media (max-width: 1200px) {
-    #featured-projects .project-item {
-      grid-column: span 1;
+  #content ul, 
+  #content ol {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+  }
+
+  #content li {
+    margin-bottom: 0.75rem;
+  }
+
+  /* Sidebar */
+  #sidebar section {
+    background: var(--card-background);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--accent-color);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  }
+
+  #sidebar section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  #sidebar h3 {
+    color: var(--secondary-color);
+    font-size: 1.25rem;
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--secondary-color);
+    font-weight: 600;
+  }
+
+  #sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #sidebar li {
+    padding: 0.5rem 0;
+    color: var(--text-color);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  #sidebar li:before {
+    content: "•";
+    color: var(--secondary-color);
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+
+  /* Links Section */
+  #github-link,
+  #external-link {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .link-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: var(--card-background);
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all var(--transition-speed);
+  }
+
+  .link-button:hover {
+    background: var(--secondary-color);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .link-button img {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.75rem;
+  }
+
+  /* PDF Section */
+  #pdf-section {
+    margin-top: 3rem;
+  }
+
+  #pdf-section h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  #pdf-section embed {
+    width: 100%;
+    height: 600px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .project {
+      padding: 1.5rem;
+    }
+
+    #project-details {
+      grid-template-columns: 1fr 250px;
+      gap: 2rem;
     }
   }
 
   @media (max-width: 768px) {
-    .page-header {
-      padding: 3rem 1rem;
+    #sidebar {
+      float: none;
+      width: 100%;
+      margin-left: 0;
+      margin-top: 2rem;
+    }
+    
+    #content {
+      width: 100%;
+    }
+  }
+
+    #project-title {
       font-size: 2rem;
     }
 
-    section {
-      padding: 2rem 1rem;
-    }
-
-    .project-gallery {
+    #sidebar {
+      display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      gap: 1rem;
     }
-  }
-
-  /* Smooth scroll behavior */
-  html {
-    scroll-behavior: smooth;
-  }
-
-  /* Enhanced focus states for accessibility */
-  a:focus {
-    outline: 3px solid var(--secondary-color);
-    outline-offset: 2px;
-  }
-
-  /* Loading animation for images */
-  .image-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, #f0f0f0 0%, #f8f8f8 50%, #f0f0f0 100%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-    z-index: -1;
-  }
-
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
 </style>
 
-<main id="portfolio">
-  <h1 class="page-header">Portfolio</h1>
-
-  <!-- Featured Projects Section -->
-  <section id="featured-projects">
-    <h2>Featured Projects</h2>
-    <div class="project-gallery">
-      {% assign featured_projects = site.projects | where: "featured", true %}
-      {% for project in featured_projects %}
-        <div class="project-item">
-          <a href="{{ site.baseurl }}{{ project.url }}">
-            {% if project.video %}
-              <div class="video-container">
-                <video 
-                  autoplay 
-                  loop 
-                  muted 
-                  playsinline>
-                  <source src="{{ project.video }}" type="video/mp4">
-				  <source src="{{ project.video }}" type="video/webm">
-                  <img src="{{ project.image }}" alt="{{ project.title }}">
-                </video>
-              </div>
-            {% else %}
-              <div class="image-container">
-                <img loading="lazy" src="{{ project.image }}" alt="{{ project.title }}">
-              </div>
-            {% endif %}
-            <div class="inner-text">
-              <h3>{{ project.title }}</h3>
-            </div>
-          </a>
-        </div>
-      {% endfor %}
+<main class="project">
+  <section id="project-content">
+    <!-- Media Container -->
+    <div class="media-container">
+      {% if page.video %}
+        <video class="responsive-video" autoplay loop muted playsinline>
+		  <source src="{{ page.video }}" type="video/webm">
+          <source src="{{ page.video }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      {% else %}
+        <img src="{{ page.image }}" alt="{{ page.title }}" class="responsive-image">
+      {% endif %}
     </div>
-  </section>
 
-  <!-- Other Projects Section -->
-  <section id="other-projects">
-    <h2>Other Projects</h2>
-    <div class="project-gallery">
-      {% assign other_projects = site.projects | where_exp: "project", "project.featured != true" %}
-      {% for project in other_projects %}
-        <div class="project-item">
-          <a href="{{ site.baseurl }}{{ project.url }}">
-            {% if project.video %}
-              <div class="video-container">
-                <video autoplay loop muted playsinline>
-                  <source src="{{ project.video }}" type="video/mp4">
-				  <source src="{{ project.video }}" type="video/webm">
-                </video>
-              </div>
-            {% else %}
-              <div class="image-container">
-                <img loading="lazy" src="{{ project.image }}" alt="{{ project.title }}">
-              </div>
-            {% endif %}
-            <div class="inner-text">
-              <h3>{{ project.title }}</h3>
-            </div>
-          </a>
-        </div>
-      {% endfor %}
+    <!-- Project Header -->
+    <h1 id="project-title">{{ page.title }}</h1>
+    <h2 id="project-date">{{ page.date | date: '%B %-d, %Y' }}</h2>
+
+    <!-- Project Details -->
+    <div id="project-details">
+      <!-- Sidebar - only rendered if there's content -->
+      {% if page.authors or page.skills %}
+      <div id="sidebar">
+        {% if page.authors %}
+        <section id="authors-box">
+          <h3>Authors</h3>
+          <ul>
+            {% for author in page.authors %}
+            <li>{{ author }}</li>
+            {% endfor %}
+          </ul>
+        </section>
+        {% endif %}
+
+        {% if page.skills %}
+        <section id="skills-box">
+          <h3>Skills Used</h3>
+          <ul>
+            {% for skill in page.skills %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+          </ul>
+        </section>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      <!-- Main Content -->
+      <div id="content">
+        {{ content }}
+      </div>
     </div>
+
+    <!-- Project Links -->
+    {% if page.repo %}
+    <section id="github-link">
+      <a href="{{ page.repo }}" target="_blank" class="link-button">
+        <img src="/public/images/github-logo.png" alt="GitHub Logo">
+        View on GitHub
+      </a>
+    </section>
+    {% endif %}
+
+    {% if page.link %}
+    <section id="external-link">
+      <a href="{{ page.link }}" target="_blank" class="link-button">
+        <img src="/public/images/game.png" alt="Project Link">
+        Visit Project
+      </a>
+    </section>
+    {% endif %}
+
+    <!-- PDF Section -->
+    {% if page.file %}
+    <section id="pdf-section">
+      <h3>Project Documentation</h3>
+      <embed src="{{ page.file }}" type="application/pdf" width="100%" height="600px">
+    </section>
+    {% endif %}
   </section>
 </main>
