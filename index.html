@@ -3,229 +3,271 @@ layout: main
 title: Portfolio
 ---
 
-<head>
-	<style>
-		/* Set the background color of the whole page to light blue */
-		body {
-			background-color: rgb(199, 217, 221);
-			color: rgb(27, 41, 38); /* Dark text color for contrast */
-			font-family: Arial, sans-serif;
-			margin: 0;
-			padding: 0;
-			position: relative;
-			overflow-x: hidden;
-		}
+<style>
+  :root {
+    --primary-color: #1a237e;
+    --secondary-color: #3f51b5;
+    --accent-color: #7c4dff;
+    --background-color: #f5f8ff;
+    --card-background: #ffffff;
+    --text-color: #2c3e50;
+    --gradient-start: #3949ab;
+    --gradient-end: #1e88e5;
+    --transition-speed: 0.3s;
+  }
 
-		/* General Layout for Projects */
-		.project-gallery {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 20px;
-			padding: 20px;
-		}
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
 
-		/* Featured Projects Section */
-		#featured-projects .project-item {
-			width: calc(33.33% - 20px);
-			transition: transform 0.4s ease-in-out;
-			cursor: pointer;
-			position: relative;
-			overflow: hidden;
-		}
+  .page-header {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    position: relative;
+    overflow: hidden;
+  }
 
-		/* Enlarge the project item when hovered */
-		#featured-projects .project-item:hover {
-			transform: scale(1.2);
-			z-index: 100;
-		}
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    transform: translateY(-50%) rotate(45deg);
+    pointer-events: none;
+  }
 
-		/* Apply blur effect to the background when hovering */
-		.blurred .project-item:not(:hover) {
-			filter: blur(5px);
-			pointer-events: none;
-		}
+  /* Section Styling */
+  section {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 
-		/* Other Projects Section */
-		#other-projects .project-item {
-			width: calc(20% - 20px);
-		}
+  section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 1rem;
+  }
 
-		.project-item {
-			background-color: #fff;
-			border: 1px solid #030303;
-			border-radius: 8px;
-			overflow: hidden;
-			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-		}
+  section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    border-radius: 2px;
+  }
 
-		.image-container,
-		.video-container {
-			width: 100%;
-			height: 200px;
-			overflow: hidden;
-		}
+  /* Project Gallery Grid */
+  .project-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+  }
 
-		/* Styling for images */
-		.image-container img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
+  /* Featured Projects */
+  #featured-projects .project-item {
+    grid-column: span 2;
+  }
 
-		/* Styling for videos */
-		.video-container video {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
+  /* Project Items */
+  .project-item {
+    background: var(--card-background);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-speed);
+    position: relative;
+  }
 
-		.inner-text {
-			padding: 15px;
-			text-align: center;
-		}
+  .project-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  }
 
-		.inner-text h3 {
-			font-size: 1.2em;
-			color: #333;
-			margin: 0;
-		}
+  .project-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    opacity: 0;
+    transition: opacity var(--transition-speed);
+  }
 
-		/* Featured Projects Section Styling */
-		#featured-projects {
-			background-color: #ffffff;
-			padding: 20px;
-			margin-bottom: 40px;
-		}
+  .project-item:hover::after {
+    opacity: 1;
+  }
 
-		#featured-projects h2 {
-			text-align: center;
-			font-size: 2em;
-			color: rgb(0, 0, 0);
-			margin-bottom: 20px;
-		}
+  /* Media Containers */
+  .image-container, 
+  .video-container {
+    position: relative;
+    padding-top: 66.67%;
+    overflow: hidden;
+  }
 
-		/* Other Projects Section Styling */
-		#other-projects {
-			background-color: #ffffff;
-			padding: 20px;
-		}
+  .image-container img, 
+  .video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-speed);
+  }
 
-		#other-projects h2 {
-			text-align: center;
-			font-size: 2em;
-			color: rgb(0, 0, 0);
-			margin-bottom: 20px;
-		}
+  .project-item:hover .image-container img,
+  .project-item:hover .video-container video {
+    transform: scale(1.05);
+  }
 
-		/* Responsive Design */
-		@media (max-width: 1024px) {
-			.project-item {
-				width: calc(25% - 20px);
-			}
-			#featured-projects .project-item,
-			#other-projects .project-item {
-				width: calc(50% - 20px);
-			}
-		}
+  /* Text Content */
+  .inner-text {
+    padding: 1.5rem;
+    background: var(--card-background);
+  }
 
-		@media (max-width: 768px) {
-			.project-item {
-				width: calc(50% - 20px);
-			}
-			#featured-projects .project-item,
-			#other-projects .project-item {
-				width: calc(50% - 20px);
-			}
-		}
+  .inner-text h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    font-weight: 600;
+  }
 
-		@media (max-width: 480px) {
-			.project-item {
-				width: calc(100% - 20px);
-			}
-			#featured-projects .project-item,
-			#other-projects .project-item {
-				width: calc(100% - 20px);
-			}
-		}
-	</style>
-</head>
+  /* Loading Animation */
+  .image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--background-color) 0%, #ffffff 50%, var(--background-color) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    z-index: -1;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    #featured-projects .project-item {
+      grid-column: span 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 3rem 1rem;
+      font-size: 2rem;
+    }
+
+    section {
+      padding: 2rem 1rem;
+    }
+
+    .project-gallery {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  /* Accessibility */
+  a:focus {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
 
 <main id="portfolio">
-	<h1 class="page-header">Portfolio</h1>
+  <h1 class="page-header">Portfolio</h1>
 
-	<div class="blur-container">
-		<!-- Featured Projects Section -->
-		<section id="featured-projects">
-			<h2>Featured Projects</h2>
-			<div id="featured-gallery" class="project-gallery">
-				{% assign featured_projects = site.projects | where: "featured", true %}
-				{% for project in featured_projects %}
-					<div class="project-item">
-						<a href="{{ site.baseurl }}{{ project.url }}">
-							<!-- Check if the project has a video or image -->
-							<div class="image-container">
-								{% if project.video %}
-									<div class="video-container">
-										<video autoplay loop muted>
-											<source src="{{ project.video }}" type="video/mp4">
-											Your browser does not support the video tag.
-										</video>
-									</div>
-								{% else %}
-									<img class="inner" src="{{ project.image }}" alt="{{ project.title }}">
-								{% endif %}
-							</div>
-							<div class="inner-text">
-								<h3>{{ project.title }}</h3>
-							</div>
-						</a>
-					</div>
-				{% endfor %}
-			</div>
-		</section>
+  <!-- Featured Projects Section -->
+  <section id="featured-projects">
+    <h2>Featured Projects</h2>
+    <div class="project-gallery">
+      {% assign featured_projects = site.projects | where: "featured", true %}
+      {% for project in featured_projects %}
+        <div class="project-item">
+          <a href="{{ site.baseurl }}{{ project.url }}">
+            {% if project.video %}
+              <div class="video-container">
+                <video autoplay loop muted playsinline>
+                  <source src="{{ project.video }}" type="video/mp4">
+                </video>
+              </div>
+            {% else %}
+              <div class="image-container">
+                <img loading="lazy" src="{{ project.image }}" alt="{{ project.title }}">
+              </div>
+            {% endif %}
+            <div class="inner-text">
+              <h3>{{ project.title }}</h3>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
 
-		<!-- Other Projects Section -->
-		<section id="other-projects">
-			<h2>Other Projects</h2>
-			<div id="other-projects-gallery" class="project-gallery">
-				{% assign other_projects = site.projects | where_exp: "project", "project.featured != true" %}
-				{% for project in other_projects %}
-					<div class="project-item">
-						<a href="{{ site.baseurl }}{{ project.url }}">
-							<!-- Check if the project has a video or image -->
-							<div class="image-container">
-								{% if project.video %}
-									<div class="video-container">
-										<video autoplay loop muted>
-											<source src="{{ project.video }}" type="video/mp4">
-											Your browser does not support the video tag.
-										</video>
-									</div>
-								{% else %}
-									<img class="inner" src="{{ project.image }}" alt="{{ project.title }}">
-								{% endif %}
-							</div>
-							<div class="inner-text">
-								<h3>{{ project.title }}</h3>
-							</div>
-						</a>
-					</div>
-				{% endfor %}
-			</div>
-		</section>
-	</div>
+  <!-- Other Projects Section -->
+  <section id="other-projects">
+    <h2>Other Projects</h2>
+    <div class="project-gallery">
+      {% assign other_projects = site.projects | where_exp: "project", "project.featured != true" %}
+      {% for project in other_projects %}
+        <div class="project-item">
+          <a href="{{ site.baseurl }}{{ project.url }}">
+            {% if project.video %}
+              <div class="video-container">
+                <video autoplay loop muted playsinline>
+                  <source src="{{ project.video }}" type="video/mp4">
+                </video>
+              </div>
+            {% else %}
+              <div class="image-container">
+                <img loading="lazy" src="{{ project.image }}" alt="{{ project.title }}">
+              </div>
+            {% endif %}
+            <div class="inner-text">
+              <h3>{{ project.title }}</h3>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
 </main>
-
-<script>
-	// Add event listeners for hover effect
-	const projectItems = document.querySelectorAll('.project-item');
-
-	projectItems.forEach(item => {
-		item.addEventListener('mouseenter', () => {
-			document.body.classList.add('blurred');
-		});
-		item.addEventListener('mouseleave', () => {
-			document.body.classList.remove('blurred');
-		});
-	});
-</script>

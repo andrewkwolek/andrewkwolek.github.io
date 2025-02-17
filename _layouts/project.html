@@ -2,304 +2,338 @@
 layout: main
 ---
 
+<style>
+  :root {
+    --primary-color: #1a237e;
+    --secondary-color: #3f51b5;
+    --accent-color: #7c4dff;
+    --background-color: #f5f8ff;
+    --card-background: #ffffff;
+    --text-color: #2c3e50;
+    --gradient-start: #3949ab;
+    --gradient-end: #1e88e5;
+    --transition-speed: 0.3s;
+    --content-width: 1200px;
+  }
+
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
+
+  .project {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  /* Ensure proper spacing below video/image */
+  .media-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 3rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    clear: both; /* Ensure nothing floats around the media container */
+  }
+
+  .responsive-video, 
+  .responsive-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+  }
+
+  /* Project Header */
+  #project-title {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin: 2rem 0 0.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  #project-date {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 3rem;
+    font-weight: 500;
+  }
+
+  /* Project Details Layout */
+  #project-details {
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  /* Sidebar */
+  #sidebar {
+    float: right;
+    width: 300px;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Content area */
+  #content {
+    /* Remove any fixed width constraints */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  /* Ensure content flows around sidebar */
+  #content p, 
+  #content ul, 
+  #content ol,
+  #content h2,
+  #content h3 {
+    overflow: auto; /* Ensures content wraps around floated elements */
+  }
+
+  /* Content Area */
+  #content {
+    color: var(--text-color);
+  }
+
+  #content h2 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem;
+    font-weight: 600;
+  }
+
+  #content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  #content ul, 
+  #content ol {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+  }
+
+  #content li {
+    margin-bottom: 0.75rem;
+  }
+
+  /* Sidebar */
+  #sidebar section {
+    background: var(--card-background);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--accent-color);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  }
+
+  #sidebar section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  #sidebar h3 {
+    color: var(--secondary-color);
+    font-size: 1.25rem;
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--secondary-color);
+    font-weight: 600;
+  }
+
+  #sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #sidebar li {
+    padding: 0.5rem 0;
+    color: var(--text-color);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  #sidebar li:before {
+    content: "•";
+    color: var(--secondary-color);
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+
+  /* Links Section */
+  #github-link,
+  #external-link {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .link-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: var(--card-background);
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all var(--transition-speed);
+  }
+
+  .link-button:hover {
+    background: var(--secondary-color);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .link-button img {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.75rem;
+  }
+
+  /* PDF Section */
+  #pdf-section {
+    margin-top: 3rem;
+  }
+
+  #pdf-section h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  #pdf-section embed {
+    width: 100%;
+    height: 600px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .project {
+      padding: 1.5rem;
+    }
+
+    #project-details {
+      grid-template-columns: 1fr 250px;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #sidebar {
+      float: none;
+      width: 100%;
+      margin-left: 0;
+      margin-top: 2rem;
+    }
+    
+    #content {
+      width: 100%;
+    }
+  }
+
+    #project-title {
+      font-size: 2rem;
+    }
+
+    #sidebar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+</style>
+
 <main class="project">
-	<section id="project-content">
-		<!-- Project Video -->
-		<div class="media-container">
-			{% if page.video %}
-				<video id="project-video" class="responsive-video" autoplay loop muted>
-					<source src="{{ page.video }}" type="video/mp4">
-					Your browser does not support the video tag.
-				</video>
-			{% else %}
-				<img src="{{ page.image }}" alt="Project Image" class="responsive-image">
-			{% endif %}
-		</div>
-		
-		<!-- Project Title and Date -->
-		<h1 id="project-title">{{ page.title }}</h1>
-		<h2 id="project-date">{{ page.date | date: '%B %-d, %Y' }}</h2>
+  <section id="project-content">
+    <!-- Media Container -->
+    <div class="media-container">
+      {% if page.video %}
+        <video class="responsive-video" autoplay loop muted playsinline>
+          <source src="{{ page.video }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      {% else %}
+        <img src="{{ page.image }}" alt="{{ page.title }}" class="responsive-image">
+      {% endif %}
+    </div>
 
-		<!-- Content Section -->
-		<div id="project-details">
-			<!-- Project Description -->
-			<div id="content">
-				{{ content }}
-			</div>
+    <!-- Project Header -->
+    <h1 id="project-title">{{ page.title }}</h1>
+    <h2 id="project-date">{{ page.date | date: '%B %-d, %Y' }}</h2>
 
-			<!-- Sidebar Section for Authors and Skills -->
-			<div id="sidebar">
-				<!-- Authors Box -->
-				{% if page.authors %}
-				<section id="authors-box">
-					<h3>Authors</h3>
-					<ul>
-						{% for author in page.authors %}
-						<li>{{ author }}</li>
-						{% endfor %}
-					</ul>
-				</section>
-				{% endif %}
-
-				<!-- Skills Box -->
-				{% if page.skills %}
-				<section id="skills-box">
-					<h3>Skills Used</h3>
-					<ul>
-						{% for skill in page.skills %}
-						<li>{{ skill }}</li>
-						{% endfor %}
-					</ul>
-				</section>
-				{% endif %}
-			</div>
-		</div>
-
-		<!-- Project Repository Link -->
-        {% if page.repo %}
-		<section id="github-link">
-			<a href="{{ page.repo }}" target="_blank" id="github-repo-link">
-				<img src="/public/images/github-logo.png" alt="GitHub Logo" class="github-logo">
-				View the GitHub Repo
-			</a>
-		</section>
-		{% endif %}
-
-		<!-- Link Section (display if 'link' is provided in the markdown) -->
-        {% if page.link %}
-        <section id="external-link">
-            <h3>Check out the Project</h3>
-            <a href="{{ page.link }}" target="_blank" class="project-link">
-				<img src="/public/images/game.png" alt="Game controller" class="game-controller">
-                Visit the project page
-            </a>
+    <!-- Project Details -->
+    <div id="project-details">
+      <!-- Sidebar - only rendered if there's content -->
+      {% if page.authors or page.skills %}
+      <div id="sidebar">
+        {% if page.authors %}
+        <section id="authors-box">
+          <h3>Authors</h3>
+          <ul>
+            {% for author in page.authors %}
+            <li>{{ author }}</li>
+            {% endfor %}
+          </ul>
         </section>
         {% endif %}
 
-		<!-- PDF Section (display if 'pdf' is provided in the markdown) -->
-		{% if page.file %}
-		<section id="pdf-section">
-			<h3>Project Documentation</h3>
-			<embed src="{{ page.file }}" type="application/pdf" width="100%" height="600px">
-		</section>
-		{% endif %}
-	</section>
+        {% if page.skills %}
+        <section id="skills-box">
+          <h3>Skills Used</h3>
+          <ul>
+            {% for skill in page.skills %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+          </ul>
+        </section>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      <!-- Main Content -->
+      <div id="content">
+        {{ content }}
+      </div>
+    </div>
+
+    <!-- Project Links -->
+    {% if page.repo %}
+    <section id="github-link">
+      <a href="{{ page.repo }}" target="_blank" class="link-button">
+        <img src="/public/images/github-logo.png" alt="GitHub Logo">
+        View on GitHub
+      </a>
+    </section>
+    {% endif %}
+
+    {% if page.link %}
+    <section id="external-link">
+      <a href="{{ page.link }}" target="_blank" class="link-button">
+        <img src="/public/images/game.png" alt="Project Link">
+        Visit Project
+      </a>
+    </section>
+    {% endif %}
+
+    <!-- PDF Section -->
+    {% if page.file %}
+    <section id="pdf-section">
+      <h3>Project Documentation</h3>
+      <embed src="{{ page.file }}" type="application/pdf" width="100%" height="600px">
+    </section>
+    {% endif %}
+  </section>
 </main>
-
-<style>
-	/* Set light blue background for the page */
-	body {
-		background-color: #e6f7ff;  /* Light blue background */
-		font-family: Arial, sans-serif;
-		margin: 0;
-		padding: 0;
-	}
-
-	/* Center only the video */
-	.media-container {
-		text-align: center;  /* Center the video container */
-		margin-bottom: 30px;  /* Add more space below the video */
-	}
-
-	.responsive-video, .responsive-image {
-		width: 100%;
-		max-width: 600px;  /* Limit maximum width to 600px */
-		height: auto;  /* Maintain aspect ratio */
-		border-radius: 8px;
-		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	}
-
-	#project-content {
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 20px;
-	}
-
-	#project-title {
-		font-size: 2.8em;
-		color: #2c3e50;  /* Dark color for the title */
-		margin-top: 20px;
-		margin-bottom: 10px;
-		text-align: center;  /* Center the title */
-	}
-
-	#project-date {
-		font-size: 1.2em;
-		color: #7f8c8d;  /* Light grey color for the date */
-		text-align: center;  /* Center the date */
-		margin-bottom: 30px;  /* Add gap below the date */
-	}
-
-	/* Layout for Content and Sidebar */
-	#project-details {
-		display: flex;
-		justify-content: space-between; /* Space between content and sidebar */
-	}
-
-	#content {
-		flex: 1;  /* Content section takes up remaining space */
-		position: relative;
-	}
-
-	/* Sidebar styling */
-	#sidebar {
-		width: 300px; /* Fixed width for the sidebar */
-		display: flex;
-		flex-direction: column; /* Stack authors and skills boxes vertically */
-		gap: 20px; /* Space between boxes */
-	}
-
-	/* Authors Box Styling */
-	#authors-box, #skills-box {
-		background-color: #ffffff;
-		border: 1px solid #ddd;
-		border-radius: 8px;
-		padding: 20px;
-		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-	}
-
-	#authors-box h3, #skills-box h3 {
-		font-size: 1.8em;
-		color: #e74c3c;  /* Red color for section titles */
-		border-bottom: 2px solid #e74c3c;
-		padding-bottom: 5px;
-		margin-bottom: 15px;
-	}
-
-	#authors-box ul, #skills-box ul {
-		list-style-type: disc;
-		padding-left: 20px; /* Indent the list */
-	}
-
-	#authors-box ul li, #skills-box ul li {
-		color: #2c3e50;
-		font-size: 1.1em;
-		margin-bottom: 5px;
-	}
-
-	/* Content styling */
-	#content {
-		padding-left: 20px;  /* Add padding to indent the content */
-	}
-
-	#content ul, ol {
-		padding-left: 40px; /* Indent bullet points properly */
-		margin-left: 0; /* Remove any default margin */
-	}
-
-	#content li, ol {
-		margin-bottom: 10px; /* Space between list items */
-		line-height: 1.6; /* Improve readability of list items */
-	}
-
-	#content > h2 {
-		margin-top: 20px;
-		color: #3498db;  /* Bright blue color for secondary headings */
-	}
-
-	#content > p {
-		margin-bottom: 20px;
-		color: #34495e;  /* Darker grey for paragraph text */
-		line-height: 1.6;  /* Improve readability with better line height */
-	}
-
-	/* PDF Section Styling */
-	#pdf-section {
-		margin-top: 40px;
-	}
-
-	#pdf-section h3 {
-		font-size: 1.8em;
-		color: #e74c3c;  /* Red color for section titles */
-		border-bottom: 2px solid #e74c3c;
-		padding-bottom: 5px;
-		margin-bottom: 15px;
-	}
-
-	#pdf-section embed {
-		border: 1px solid #ddd;
-		border-radius: 8px;
-	}
-
-	/* GitHub Link Styling */
-	#github-link {
-		text-align: center;
-		margin-top: 20px;
-	}
-
-	#github-repo-link {
-		font-size: 1.2em;
-		color: #333;
-		text-decoration: none;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.github-logo {
-		width: 20px;
-		height: 20px;
-		margin-right: 10px;
-	}
-
-	#github-repo-link:hover {
-		color: #2c3e50;
-	}
-
-	#external-link {
-		margin-top: 40px;
-		text-align: center;
-	}
-
-	#external-link h3 {
-		font-size: 1.8em;
-		color: #e74c3c;  /* Red color for section titles */
-		border-bottom: 2px solid #e74c3c;
-		padding-bottom: 5px;
-		margin-bottom: 15px;
-	}
-
-	/* External link icon size */
-	.game-controller {
-		width: 25px;  /* Set the width to a smaller size */
-		height: 25px; /* Set the height to a smaller size */
-		margin-right: 10px;  /* Optional: space between icon and text */
-	}
-
-	.project-link {
-		font-size: 1.2em;
-		color: #3498db;
-		text-decoration: none;
-	}
-
-	.project-link:hover {
-		color: #2c3e50;
-	}
-
-	/* Ensure layout adapts on smaller screens */
-	@media (max-width: 768px) {
-		#project-details {
-			flex-direction: column;  /* Stack the content and sidebar vertically */
-		}
-
-		#sidebar {
-			width: 100%;  /* Sidebar should take full width on small screens */
-			margin-top: 20px;
-		}
-
-		#content {
-			width: 100%; /* Content section should take full width on small screens */
-		}
-
-		.media-container {
-			min-width: 100%; /* Ensure it takes full width on mobile */
-			max-width: 100%;
-		}
-
-		.responsive-video {
-			width: 100%;
-			height: auto;
-			max-width: 100%;
-		}
-	}
-</style>

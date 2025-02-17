@@ -3,7 +3,7 @@ layout: project
 title: Pen Snatcher
 date: September 25, 2024
 video: /public/videos/pencv.mp4
-featured: false
+featured: true
 repo: https://github.com/andrewkwolek/PenCV
 skills:
     - Python
