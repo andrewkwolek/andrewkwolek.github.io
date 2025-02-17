@@ -50,7 +50,6 @@ title: Portfolio
     pointer-events: none;
   }
 
-  /* Section Styling */
   section {
     padding: 4rem 2rem;
     max-width: 1400px;
@@ -74,11 +73,10 @@ title: Portfolio
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    background-color: var(--secondary-color);
     border-radius: 2px;
   }
 
-  /* Project Gallery Grid */
   .project-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -86,18 +84,12 @@ title: Portfolio
     padding: 1rem;
   }
 
-  /* Featured Projects */
-  #featured-projects .project-item {
-    grid-column: span 2;
-  }
-
-  /* Project Items */
   .project-item {
     background: var(--card-background);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all var(--transition-speed);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
     position: relative;
   }
 
@@ -106,31 +98,22 @@ title: Portfolio
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
   }
 
-  .project-item::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
-    opacity: 0;
-    transition: opacity var(--transition-speed);
-  }
-
-  .project-item:hover::after {
-    opacity: 1;
-  }
-
-  /* Media Containers */
-  .image-container, 
-  .video-container {
+  .image-container, .video-container {
     position: relative;
-    padding-top: 66.67%;
+    padding-top: 66.67%; /* 3:2 aspect ratio */
     overflow: hidden;
   }
 
-  .image-container img, 
+  /* Media Containers - consistent sizing for both images and videos */
+  .image-container, 
+  .video-container {
+    position: relative;
+    padding-top: 66.67%; /* 3:2 aspect ratio */
+    overflow: hidden;
+  }
+
+  /* Base styles for both images and videos */
+  .image-container img,
   .video-container video {
     position: absolute;
     top: 0;
@@ -146,7 +129,28 @@ title: Portfolio
     transform: scale(1.05);
   }
 
-  /* Text Content */
+  /* Video-specific styles */
+  .video-container video::-webkit-media-controls {
+    display: none !important;
+  }
+
+  @media (max-width: 768px) {
+    .video-container video::-webkit-media-controls {
+      display: flex !important;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .video-container video:hover::-webkit-media-controls {
+      opacity: 1;
+    }
+  }
+
+  .project-item:hover .image-container img,
+  .project-item:hover .video-container video {
+    transform: scale(1.05);
+  }
+
   .inner-text {
     padding: 1.5rem;
     background: var(--card-background);
@@ -159,26 +163,10 @@ title: Portfolio
     font-weight: 600;
   }
 
-  /* Loading Animation */
-  .image-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, var(--background-color) 0%, #ffffff 50%, var(--background-color) 100%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-    z-index: -1;
+  #featured-projects .project-item {
+    grid-column: span 2;
   }
 
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-
-  /* Responsive Design */
   @media (max-width: 1200px) {
     #featured-projects .project-item {
       grid-column: span 1;
@@ -201,14 +189,34 @@ title: Portfolio
     }
   }
 
-  /* Accessibility */
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Enhanced focus states for accessibility */
   a:focus {
-    outline: 3px solid var(--accent-color);
+    outline: 3px solid var(--secondary-color);
     outline-offset: 2px;
   }
 
-  html {
-    scroll-behavior: smooth;
+  /* Loading animation for images */
+  .image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #f0f0f0 0%, #f8f8f8 50%, #f0f0f0 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    z-index: -1;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
   }
 </style>
 
@@ -225,8 +233,9 @@ title: Portfolio
           <a href="{{ site.baseurl }}{{ project.url }}">
             {% if project.video %}
               <div class="video-container">
-                <video autoplay loop muted playsinline>
+                <video autoplay loop muted playsinline preload="metadata" poster="{{ project.image }}">
                   <source src="{{ project.video }}" type="video/mp4">
+                  <img src="{{ project.image }}" alt="{{ project.title }}">
                 </video>
               </div>
             {% else %}
