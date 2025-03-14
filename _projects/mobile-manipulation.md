@@ -3,7 +3,7 @@ layout: project
 title: Mobile Manipulation
 date: December 13, 2024
 video: /public/videos/mobilemanip.mp4
-featured: true
+featured: false
 repo: https://github.com/andrewkwolek/mobile-manipulation
 skills:
     - Python

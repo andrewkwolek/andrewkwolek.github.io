@@ -3,7 +3,7 @@ layout: project
 title: Stranded
 date: April 24, 2021
 video: 
-featured: true
+featured: false
 video: /public/videos/stranded.mp4
 skills:
     - Unity
