@@ -25,31 +25,6 @@ title: Portfolio
     line-height: 1.6;
   }
 
-  .page-header {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    color: white;
-    margin: 0;
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .page-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
-    transform: translateY(-50%) rotate(45deg);
-    pointer-events: none;
-  }
-
   section {
     padding: 4rem 2rem;
     max-width: 1400px;
@@ -163,22 +138,12 @@ title: Portfolio
     font-weight: 600;
   }
 
-  #featured-projects .project-item {
-    grid-column: span 2;
-  }
-
+  /* All projects are now displayed in the same way */
   @media (max-width: 1200px) {
-    #featured-projects .project-item {
-      grid-column: span 1;
-    }
+    /* Keep consistent styling for all projects */
   }
 
   @media (max-width: 768px) {
-    .page-header {
-      padding: 3rem 1rem;
-      font-size: 2rem;
-    }
-
     section {
       padding: 2rem 1rem;
     }
@@ -221,14 +186,12 @@ title: Portfolio
 </style>
 
 <main id="portfolio">
-  <h1 class="page-header">Portfolio</h1>
-
-  <!-- Featured Projects Section -->
-  <section id="featured-projects">
-    <h2>Featured Projects</h2>
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2>Projects</h2>
     <div class="project-gallery">
-      {% assign featured_projects = site.projects | where: "featured", true %}
-      {% for project in featured_projects %}
+      {% assign all_projects = site.projects %}
+      {% for project in all_projects %}
         <div class="project-item">
           <a href="{{ site.baseurl }}{{ project.url }}">
             {% if project.video %}
@@ -259,47 +222,4 @@ title: Portfolio
       {% endfor %}
     </div>
   </section>
-
-  <!-- Other Projects Section -->
-  <section id="other-projects">
-    <h2>Other Projects</h2>
-    <div class="project-gallery">
-      {% assign other_projects = site.projects | where_exp: "project", "project.featured != true" %}
-      {% for project in other_projects %}
-        <div class="project-item">
-          <a href="{{ site.baseurl }}{{ project.url }}">
-            {% if project.video %}
-              <div class="video-container">
-                <video 
-                  autoplay 
-                  loop 
-                  muted 
-                  playsinline 
-                  preload="metadata"
-                  poster="{{ project.image }}"
-                  webkit-playsinline>
-                  <source src="{{ project.video }}" type="video/mp4">
-                  <source src="{{ project.video }}" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            {% else %}
-              <div class="image-container">
-                <img loading="lazy" src="{{ project.image }}" alt="{{ project.title }}">
-              </div>
-            {% endif %}
-            <div class="inner-text">
-              <h3>{{ project.title }}</h3>
-            </div>
-          </a>
-        </div>
-      {% endfor %}
-    </div>
-  </section>
-
-  <div style="display: flex; justify-content: center; width: 100%;">
-    <div style="width: 800px;">
-      <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=h9zvp07LDuGzjXbwqOCDUvlNFJjfskdsxNW6Xd3VAss&w=600&t=tt&cl=ffffff"></script>
-    </div>
-  </div>
 </main>
