@@ -73,7 +73,6 @@ title: Portfolio
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     padding: 1rem;
-    align-items: start; /* Ensures all cards align to the top */
   }
 
   .project-item {
@@ -83,9 +82,6 @@ title: Portfolio
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform var(--transition-speed), box-shadow var(--transition-speed);
     position: relative;
-    height: auto; /* Allow flexible height for content */
-    display: flex;
-    flex-direction: column; /* Stack image and text vertically */
   }
 
   .project-item:hover {
@@ -97,7 +93,6 @@ title: Portfolio
     position: relative;
     padding-top: 66.67%; /* 3:2 aspect ratio */
     overflow: hidden;
-    height: 0; /* Ensures consistent aspect ratio */
   }
 
   .image-container img,
@@ -135,9 +130,6 @@ title: Portfolio
   .inner-text {
     padding: 1.5rem;
     background: var(--card-background);
-    flex-grow: 1; /* Allows text area to expand to fill remaining space */
-    display: flex;
-    align-items: center; /* Centers the title vertically in the text area */
   }
 
   .inner-text h3 {
