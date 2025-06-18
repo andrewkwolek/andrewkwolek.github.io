@@ -5,6 +5,7 @@ date: June 18, 2025
 video: /public/videos/VSLAM.mp4
 featured: true
 repo: https://github.com/andrewkwolek/dynamic-visual-slam
+category: robotics
 skills:
     - C++
     - SLAM

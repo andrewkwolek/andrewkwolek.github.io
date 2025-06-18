@@ -10,6 +10,7 @@ skills:
   - Computer Vision
 repo: https://github.com/andrewkwolek/Apex-Putter
 featured: true
+category: robotics
 authors:
   - Zhengyang Kris Weng
   - Andrew Kwolek

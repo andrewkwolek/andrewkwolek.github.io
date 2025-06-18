@@ -4,6 +4,7 @@ title: RRT
 date: September 13, 2024
 video: /public/videos/rrt.mp4
 featured: false
+category: robotics
 skills:
     - Python
     - Matplotlib

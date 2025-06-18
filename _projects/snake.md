@@ -3,6 +3,7 @@ layout: project
 title: Snake Game
 date: September 22, 2024
 video: /public/videos/snake.mp4
+category: software
 skills:
   - Python
   - Pygame

@@ -5,6 +5,7 @@ date: December 13, 2024
 video: /public/videos/mobilemanip.mp4
 featured: false
 repo: https://github.com/andrewkwolek/mobile-manipulation
+category: robotics
 skills:
     - Python
     - Feedforward PI Controller

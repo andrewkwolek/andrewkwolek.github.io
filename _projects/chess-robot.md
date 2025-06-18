@@ -4,6 +4,7 @@ title: Chess Robot
 date: April 22, 2021
 image: /public/images/chess-bot.png
 featured: false
+category: robotics
 authors:
     - Andrew Kwolek
     - Jack Zender

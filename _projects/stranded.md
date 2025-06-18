@@ -5,6 +5,7 @@ date: April 24, 2021
 video: 
 featured: false
 video: /public/videos/stranded.mp4
+category: software
 skills:
     - Unity
     - C#

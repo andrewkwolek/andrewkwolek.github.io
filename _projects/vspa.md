@@ -3,6 +3,7 @@ layout: project
 title: Biomechanical Research
 date: September 7, 2019
 video: /public/videos/vspa.mp4
+category: mechanical
 skills:
   - Vicon MoCap
   - SolidWorks

@@ -5,6 +5,7 @@ date: March 14, 2025
 video: /public/videos/FullDive.mp4
 featured: true
 repo: https://github.com/andrewkwolek/BlueOSSLAM
+category: robotics
 skills:
     - Python
     - Visual Odometry

@@ -4,6 +4,7 @@ title: Jack in a Box
 date: December 14, 2024
 video: /public/videos/jack.mp4
 repo: https://github.com/andrewkwolek/jackinabox
+category: mechanical
 featured: false
 skills:
     - Python
