@@ -17,47 +17,61 @@
 </footer>
 
 <style>
-	/* Footer styles */
+	/* Footer width fix */
 	footer {
-	  padding: 20px;
-	  background-color: #f4f4f4; /* You can change the background color as needed */
-	  text-align: center; /* Center text in the footer */
+	  width: 100%;
+	  max-width: 100vw;
+	  box-sizing: border-box;
+	  padding: 20px 2rem;
+	  background-color: #f4f4f4;
+	  text-align: center;
+	  overflow-x: hidden;
 	}
   
 	footer ul {
 	  list-style: none;
 	  padding: 0;
 	  margin: 0;
+	  max-width: 1400px;
+	  margin-left: auto;
+	  margin-right: auto;
 	}
   
 	footer ul li {
 	  margin: 5px 0;
+	  word-wrap: break-word;
 	}
   
 	/* Social media links styling */
 	.social-links {
 	  margin-top: 20px;
 	  display: flex;
-	  justify-content: center; /* Center the social icons */
-	  gap: 15px; /* Space between icons */
+	  justify-content: center;
+	  gap: 15px;
+	  max-width: 1400px;
+	  margin-left: auto;
+	  margin-right: auto;
 	}
   
 	/* Styling for social media icons */
 	.social-icon-img {
-	  width: 30px; /* Small size for the logos */
+	  width: 30px;
 	  height: 30px;
-	  object-fit: contain; /* Ensure the image fits within the container */
-	  transition: transform 0.3s ease; /* Smooth transition on hover */
+	  object-fit: contain;
+	  transition: transform 0.3s ease;
 	}
   
 	.social-icon-img:hover {
-	  transform: scale(1.1); /* Slightly enlarge the icon on hover */
+	  transform: scale(1.1);
 	}
-  
-	/* Ensure the footer is at the bottom */
-	footer {
-	  position: relative;
-	  bottom: 0;
-	  width: 100%;
+
+	@media (max-width: 768px) {
+	  footer {
+	    padding: 20px 1rem;
+	  }
+	  
+	  footer ul li {
+	    font-size: 0.9rem;
+	  }
 	}
 </style>
