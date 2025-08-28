@@ -1,8 +1,8 @@
 ---
 layout: project
-title: Visual SLAM with RGB-D Camera
-date: June 18, 2025
-video: /public/videos/VSLAM.mp4
+title: Visual SLAM in Dynamic Environments
+date: August 27, 2025
+video: /public/videos/VSLAMthumbnail.mp4
 featured: true
 repo: https://github.com/andrewkwolek/dynamic-visual-slam
 category: robotics
@@ -19,6 +19,8 @@ skills:
 authors:
   - Andrew Kwolek
 ---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-a7fVRAk5hQ?si=kj_vy2BbJrqf9hI7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Overview
 
