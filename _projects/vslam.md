@@ -37,6 +37,14 @@ What makes this implementation particularly interesting is its focus on dynamic 
 ## Technical Implementation
 
 ### Architecture Overview
+
+<div style="text-align: center; margin: 2rem 0;">
+  <img src="/public/images/DynamicSLAMArchitecture.png" 
+       alt="Dynamic SLAM System Architecture" 
+       style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
+  <p style="font-style: italic; margin-top: 1rem; color: #64748b;">Dynamic SLAM system architecture featuring distributed ROS2 nodes</p>
+</div>
+
 The SLAM system follows a distributed ROS2 architecture with two main components:
 
 **Frontend Node**: Responsible for real-time visual odometry, feature detection using ORB descriptors, feature matching with geometric consistency checks, and keyframe detection based on tracking quality and temporal criteria.
