@@ -31,7 +31,7 @@ layout: main
     padding: 2rem;
   }
 
-  /* Ensure proper spacing below video/image */
+  /* Media Container with Toggle */
   .media-container {
     position: relative;
     width: 100%;
@@ -39,8 +39,11 @@ layout: main
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    clear: both; /* Ensure nothing floats around the media container */
+    clear: both;
+    background-color: var(--card-background);
   }
+
+
 
   .responsive-video, 
   .responsive-image {
@@ -50,9 +53,32 @@ layout: main
     border-radius: 12px;
   }
 
+  /* YouTube Video Container */
+  .youtube-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    border-radius: 12px;
+  }
+
+  .youtube-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 12px;
+  }
+
+
+
   /* Project Header */
   #project-title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: var(--primary-color);
     margin: 2rem 0 0.5rem;
     font-weight: 700;
@@ -82,18 +108,16 @@ layout: main
 
   /* Content area */
   #content {
-    /* Remove any fixed width constraints */
     overflow-wrap: break-word;
     word-wrap: break-word;
   }
 
-  /* Ensure content flows around sidebar */
   #content p, 
   #content ul, 
   #content ol,
   #content h2,
   #content h3 {
-    overflow: auto; /* Ensures content wraps around floated elements */
+    overflow: auto;
   }
 
   /* Content Area */
@@ -243,7 +267,6 @@ layout: main
     #content {
       width: 100%;
     }
-  }
 
     #project-title {
       font-size: 2rem;
@@ -254,13 +277,13 @@ layout: main
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1rem;
     }
-
+  }
 
   .media-container {
     position: relative;
     width: 100%;
-    max-width: 800px; /* Add this to make videos smaller */
-    margin: 0 auto 3rem auto; /* Center the container */
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -277,7 +300,6 @@ layout: main
     backface-visibility: hidden;
   }
 
-  /* Remove any object-fit: cover properties */
   @supports (-webkit-touch-callout: none) {
     .media-container video {
       width: 100%;
@@ -286,11 +308,25 @@ layout: main
   }
 </style>
 
+
+
 <main class="project">
   <section id="project-content">
     <!-- Media Container -->
     <div class="media-container">
-      {% if page.video %}
+      <!-- Priority: YouTube video first, then local video, then image -->
+      {% if page.youtube_video %}
+        <div class="youtube-container">
+          <iframe 
+            src="{{ page.youtube_video }}"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+      {% elsif page.video %}
         <video 
           class="responsive-video"
           autoplay 
@@ -304,7 +340,7 @@ layout: main
           <source src="{{ page.video }}" type="video/webm">
           Your browser does not support the video tag.
         </video>
-      {% else %}
+      {% elsif page.image %}
         <img src="{{ page.image }}" alt="{{ page.title }}" class="responsive-image">
       {% endif %}
     </div>

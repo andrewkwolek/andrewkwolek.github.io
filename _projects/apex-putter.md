@@ -1,6 +1,6 @@
 ---
 layout: project
-title: Apex Putter
+title: Franka Arm Golfing Robot
 date: December 14, 2024
 video: /public/videos/putter1.mp4
 skills:

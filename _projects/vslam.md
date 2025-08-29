@@ -1,8 +1,9 @@
 ---
 layout: project
-title: Visual SLAM in Dynamic Environments
+title: Visual SLAM in Dynamic Environments from Scratch
 date: August 27, 2025
 video: /public/videos/VSLAMthumbnail.mp4
+youtube_video: https://www.youtube.com/embed/-a7fVRAk5hQ?si=kj_vy2BbJrqf9hI7
 featured: true
 repo: https://github.com/andrewkwolek/dynamic-visual-slam
 category: robotics
@@ -19,8 +20,6 @@ skills:
 authors:
   - Andrew Kwolek
 ---
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-a7fVRAk5hQ?si=kj_vy2BbJrqf9hI7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Overview
 
@@ -39,7 +38,7 @@ What makes this implementation particularly interesting is its focus on dynamic 
 ### Architecture Overview
 
 <div style="text-align: center; margin: 2rem 0;">
-  <img src="/public/images/DynamicSLAMArchitecture.png" 
+  <img src="/public/images/DynamicSLAMArchitecture.svg" 
        alt="Dynamic SLAM System Architecture" 
        style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
   <p style="font-style: italic; margin-top: 1rem; color: #64748b;">Dynamic SLAM system architecture featuring distributed ROS2 nodes</p>
