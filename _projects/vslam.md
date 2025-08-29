@@ -56,8 +56,6 @@ The SLAM system follows a distributed ROS2 architecture with two main components
 - **Map Maintenance**: Automatic landmark pruning and triangulation refinement
 - **Real-time Visualization**: Continuous publication of optimized poses and landmark positions
 
-### Technical Challenges Solved
-
 ## Key Features
 
 ### Core SLAM Capabilities
