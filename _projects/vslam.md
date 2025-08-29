@@ -21,10 +21,6 @@ authors:
   - Andrew Kwolek
 ---
 
-## Overview
-
-I implemented a Visual SLAM (Simultaneous Localization and Mapping) pipeline from scratch using a RealSense RGB-D camera, leveraging capabilities from open-source frameworks and libraries such as ROS2, OpenCV, Ceres Solver, and custom message interfaces. This project was completed as a preliminary step to my final project as part of my MS in Robotics degree at Northwestern University.
-
 ## Project Description
 
 Visual SLAM represents one of the fundamental challenges in robotics - how can a robot simultaneously understand where it is in the world while building a map of that world using only visual sensors? This project tackles that challenge by implementing a complete SLAM pipeline that processes RGB-D camera data in real-time to estimate camera poses and construct a 3D landmark map.
@@ -46,29 +42,41 @@ What makes this implementation particularly interesting is its focus on dynamic 
 
 The SLAM system follows a distributed ROS2 architecture with two main components:
 
-**Frontend Node**: Responsible for real-time visual odometry, feature detection using ORB descriptors, feature matching with geometric consistency checks, and keyframe detection based on tracking quality and temporal criteria.
+### Frontend Node (`frontend`)
+- **Multi-modal Processing**: Synchronized RGB-D image processing with object detection integration
+- **Advanced Feature Pipeline**: ORB extraction → depth filtering → descriptor matching → geometric validation
+- **Intelligent Keyframe Selection**: Adaptive selection based on tracking quality and temporal criteria
+- **Semantic Feature Culling**: Prioritizes matched features while adding high-quality unmatched features for new landmark discovery
+- **Robust Pose Estimation**: PnP RANSAC with motion outlier detection and coordinate frame conversion
 
-**Backend Node**: Manages the global map state, performs sliding-window bundle adjustment using the Ceres optimization library, maintains persistent landmark storage for mapping, and broadcasts optimized poses through TF2.
-
-### Key Algorithms
-
-**Feature Detection & Tracking**: The system uses ORB (Oriented FAST and Rotated BRIEF) features for robust corner detection and description. Features are tracked across frames using descriptor matching with distance filtering and fundamental matrix-based geometric consistency checks via RANSAC.
-
-**Pose Estimation**: Camera poses are estimated using PnP (Perspective-n-Point) with 3D-2D correspondences between previous frame landmarks and current frame features. The system includes motion outlier detection to reject impossible camera movements and coordinate frame transformations between optical and ROS conventions.
-
-**Bundle Adjustment**: A sliding-window bundle adjustment system using Ceres Solver optimizes camera poses and landmark positions simultaneously. The implementation uses Levenberg-Marquardt optimization with Huber loss functions for robustness against outliers.
-
-**Keyframe Selection**: Intelligent keyframe detection based on tracking quality (number of successfully matched features) and temporal criteria ensures the system maintains good map coverage while avoiding redundant frames.
+### Backend Node (`backend`)
+- **Semantic Landmark Database**: Category-organized persistent landmark storage with descriptor-based association
+- **Sliding Window Optimization**: Ceres-based bundle adjustment with Huber loss robust cost functions
+- **Data Association Pipeline**: Multi-stage association using descriptor similarity and reprojection error
+- **Map Maintenance**: Automatic landmark pruning and triangulation refinement
+- **Real-time Visualization**: Continuous publication of optimized poses and landmark positions
 
 ### Technical Challenges Solved
 
-**Coordinate Frame Management**: Proper handling of transformations between camera optical frames, ROS coordinate conventions, and world frames, ensuring consistent pose estimation and landmark mapping.
+## Key Features
 
-**Real-time Performance**: Optimized feature detection with depth masking, efficient descriptor matching, and carefully tuned bundle adjustment frequency to maintain real-time operation.
+### Core SLAM Capabilities
+- **Real-time Visual Odometry**: ORB feature detection and tracking with sub-pixel accuracy
+- **Sliding Window Bundle Adjustment**: Ceres Solver-based optimization for robust pose estimation
+- **Persistent 3D Mapping**: Efficient landmark management and visualization
+- **Keyframe-based Architecture**: Adaptive keyframe selection for computational efficiency
 
-**Robust Tracking**: Multiple layers of outlier rejection including distance-based feature filtering, fundamental matrix RANSAC, and motion consistency checks to handle dynamic environments and measurement noise.
+### Semantic Integration
+- **YOLO Object Detection**: Real-time semantic labeling of visual features
+- **Dynamic Object Filtering**: Automatic exclusion of features from moving objects (people, vehicles)
+- **Category-aware Landmark Association**: Improved data association using semantic information
+- **Multi-class Mapping**: Separate landmark databases for different object categories
 
-**Memory Management**: Sliding window approach for bundle adjustment and intelligent landmark pruning to maintain computational efficiency while preserving map quality.
+### Technical Highlights
+- **Coordinate Frame Management**: Seamless conversion between optical and ROS coordinate systems
+- **Robust Feature Matching**: Geometric consistency checks with RANSAC outlier rejection
+- **Depth Integration**: Intel RealSense depth camera support for metric scale recovery
+- **Loop Closure Ready**: DBoW2 vocabulary integration for place recognition (expandable)
 
 ## Results & Impact
 
