@@ -42,14 +42,14 @@ What makes this implementation particularly interesting is its focus on dynamic 
 
 The SLAM system follows a distributed ROS2 architecture with two main components:
 
-### Frontend Node (`frontend`)
+### Frontend Node
 - **Multi-modal Processing**: Synchronized RGB-D image processing with object detection integration
 - **Advanced Feature Pipeline**: ORB extraction → depth filtering → descriptor matching → geometric validation
 - **Intelligent Keyframe Selection**: Adaptive selection based on tracking quality and temporal criteria
 - **Semantic Feature Culling**: Prioritizes matched features while adding high-quality unmatched features for new landmark discovery
 - **Robust Pose Estimation**: PnP RANSAC with motion outlier detection and coordinate frame conversion
 
-### Backend Node (`backend`)
+### Backend Node
 - **Semantic Landmark Database**: Category-organized persistent landmark storage with descriptor-based association
 - **Sliding Window Optimization**: Ceres-based bundle adjustment with Huber loss robust cost functions
 - **Data Association Pipeline**: Multi-stage association using descriptor similarity and reprojection error
